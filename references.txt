@@ -1,0 +1,8 @@
+Works Tracks:
+1. Created a project in googleCloud console to access Gmail-APIs.
+2.  
+
+References:
+1. Google-developer-console : Enabled - Gmail API in hpfxProject 
+    documentation : https://developers.google.com/workspace/gmail/api/guides
+2. 
