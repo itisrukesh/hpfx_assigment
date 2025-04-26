@@ -1,2 +1,7 @@
+*__pycache__
+.env
 /env
-*_try.py
+/tryouts
+credentials.json
+token.json
+token.backup
