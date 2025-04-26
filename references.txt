@@ -1,8 +1,27 @@
-Works Tracks:
+Work-Tracks:
 1. Created a project in googleCloud console to access Gmail-APIs.
-2.  
+2. Creadted a App for Configuration the OAuth consent. Redirect-Url must be added to [http://localhost:PORT, http://localhost:8080/]. Downloaded credentials.json file which as clientID & clientSecret on it. [>>IMPORTANT-CHECKLIST-POINT<<]
+3. Installed the Google client library for Python. Install the requirements from requirements.txt
+4.
+
 
 References:
 1. Google-developer-console : Enabled - Gmail API in hpfxProject 
-    documentation : https://developers.google.com/workspace/gmail/api/guides
-2. 
+    - documentation : https://developers.google.com/workspace/gmail/api/guides
+2. Quick start Python guide for Gmail-APIs, OAuth : https://developers.google.com/workspace/gmail/api/quickstart/python#configure_the_oauth_consent_screen
+3. pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+4.
+
+
+
+CHECKLIST:
+ - OAuth Client Type = Desktop App (not Web app). Redirect URI includes http://localhost:PORT. 
+ - Scopes match (https://www.googleapis.com/auth/gmail.modify for modify access).
+
+
+
+Coding-Style followed: 
+1. Pascal/UpperCamel Case for <class> names: [ExampleClass]
+2. Snake Case for <functions>/<method> names: [example_func]
+3. Lower Case for <variable> names: [examplevariable]
+4. Upper Case for <enum variables>/<CONSTANTS> names: [EXAMPLEVARS]
