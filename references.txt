@@ -21,6 +21,6 @@ CHECKLIST:
 
 Coding-Style followed: 
 1. Pascal/UpperCamel Case for <class> names: [ExampleClass]
-2. Snake Case for <functions>/<method> names: [example_func]
-3. Lower Case for <variable> names: [examplevariable]
+2. Camal Case for <functions>/<method> names: [exampleFunc]
+3. Snake/Lower Case for <variable> names: [example_variable]
 4. Upper Case for <enum variables>/<CONSTANTS> names: [EXAMPLEVARS]

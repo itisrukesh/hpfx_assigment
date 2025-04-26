@@ -6,7 +6,7 @@ from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
 from config import TOKENFILE, CREDSFILE, SCOPES, PORT
 
-def authenticate_gmail():
+def authenticateGmail():
     """Authenticate and return Gmail service."""
     creds = None 
 

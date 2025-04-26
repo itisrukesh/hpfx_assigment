@@ -21,9 +21,9 @@ else: print(f"{ConfigVars.PORT.value} environment variable not found.")
 # Get list of Scopes values
 # If modifying these SCOPES values in env, make sure to delete the token.pickle file. Else it will have old scope values in it.
 SCOPES = []
-scopestrings = os.getenv(ConfigVars.SCOPESSTRINGS.value)
-if scopestrings:
-    my_list = scopestrings.split(",")
+scope_strings = os.getenv(ConfigVars.SCOPESSTRINGS.value)
+if scope_strings:
+    my_list = scope_strings.split(",")
     SCOPES.extend(my_list)
     print(SCOPES)
 else:
