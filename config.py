@@ -5,6 +5,10 @@ from dotenv import load_dotenv
 CREDSFILE = 'credentials.json'
 TOKENFILE = 'token.json'
 
+# From this we are getting how many number of mail we should fetch, 
+# we will also use this for batch storing as well.
+BATCHCOUNT = 50
+
 class ConfigVars(Enum):
     PORT = "PORTVAL"
     SCOPESSTRINGS = "SCOPESVAL"

@@ -6,6 +6,11 @@ Work-Tracks:
 5. Tests Package is added for authentication function.
 6. Added & implemented functionalities for fetch email content using Gmail-APIs.
 7. Implemented functionalites for storing data into database - used SQL-lite3.
+8. Modified the fetch functionalites and storing functionalites - Based on SOLID principles. 
+9. Implemented dynamic mapping for email schema and easy future extensions.
+10. Implemented bulk batch insertion of email_records for faster storing and performance boosting. (Good for thousands of emails).
+11. Implemented Dynamic Builder Function (Auto-built from schema) if field is not found default value will be there. [>>IMPORTANT-CHECKLIST-POINT<<]
+12. 
 
 References:
 1. Google-developer-console : Enabled - Gmail API in hpfxProject 
@@ -19,7 +24,11 @@ References:
 CHECKLIST:
  - OAuth Client Type = Desktop App (not Web app). Redirect URI includes http://localhost:PORT. 
  - Scopes match (https://www.googleapis.com/auth/gmail.modify for modify access).
-
+ - Pointer-11 -> (Clean-Code-checklist)
+    - Whenever the schema updates (EMAIL_FIELDS),
+    - We must update BuildEmailRecord() to handle new fields.
+    - Either by parsing value or setting a safe default. (Otherwise the new field will get None)
+ - 
 
 Coding-Style followed: 
 1. Pascal/UpperCamel Case for <class> names: [ExampleClass]
