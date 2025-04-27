@@ -10,7 +10,8 @@ Work-Tracks:
 9. Implemented dynamic mapping for email schema and easy future extensions.
 10. Implemented bulk batch insertion of email_records for faster storing and performance boosting. (Good for thousands of emails).
 11. Implemented Dynamic Builder Function (Auto-built from schema) if field is not found default value will be there. [>>IMPORTANT-CHECKLIST-POINT<<]
-12. 
+12. Added Testfiles for above mentioned pointers(6-11). Test cases and Mocking part done. [>>IMPORTANT-CHECKLIST-POINT<<]
+
 
 References:
 1. Google-developer-console : Enabled - Gmail API in hpfxProject 
@@ -28,7 +29,7 @@ CHECKLIST:
     - Whenever the schema updates (EMAIL_FIELDS),
     - We must update BuildEmailRecord() to handle new fields.
     - Either by parsing value or setting a safe default. (Otherwise the new field will get None)
- - 
+ - Have real-mail data json files for Mock testing which will be used later part as well. And it is better than hard coded values while testing.
 
 Coding-Style followed: 
 1. Pascal/UpperCamel Case for <class> names: [ExampleClass]
