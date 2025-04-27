@@ -13,6 +13,7 @@ class ConfigVars(Enum):
     PORT = "PORTVAL"
     SCOPESSTRINGS = "SCOPESVAL"
     DBFILE = "DBFILEVAL"
+    TABLE = "TABLEVAL"
 
 # Loads values from .env / os env
 load_dotenv(override=True)
@@ -28,6 +29,12 @@ DBFILE = os.getenv(ConfigVars.DBFILE.value)
 if DBFILE:
     print(DBFILE)
 else: print(f"{ConfigVars.DBFILE.value} environment variable not found.")
+
+# Get TableName value:
+TABLE = os.getenv(ConfigVars.TABLE.value)
+if TABLE:
+    print(TABLE)
+else: print(f"{ConfigVars.TABLE.value} environment variable not found.")
 
 # Get list of Scopes values
 # If modifying these SCOPES values in env, make sure to delete the token.pickle file. Else it will have old scope values in it.

@@ -8,7 +8,7 @@ def fetchEmails(max_res=10):
     """Fetch emails from Gmail and store them into SQLite DB."""
     count = 0    
     mail_service = authenticateGmail()
-    createEmailsTable()
+    createEmailsTable() # PUTME in main.go 
     
     results = mail_service.users().messages().list(userId='me', maxResults=max_res).execute()
     msgs = results.get('messages',[])

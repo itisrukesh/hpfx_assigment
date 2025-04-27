@@ -2,7 +2,7 @@ import unittest
 from auth import authenticateGmail
 
 class TestGmailAuth(unittest.TestCase):
-    def testAuthenticateGmailService(self):
+    def test_AuthenticateGmailService(self):
         """Test if Gmail service is authenticated and working."""
         service = authenticateGmail()
         self.assertIsNotNone(service, "Failed to authenticate and build Gmail service.")

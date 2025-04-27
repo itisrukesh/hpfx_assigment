@@ -1,5 +1,5 @@
 import sqlite3
-from config import DBFILE
+from config import DBFILE, TABLE
 
 class TableQuery:
     EMAIL_FIELDS = {
@@ -20,7 +20,7 @@ class TableQuery:
             f"{field} {datatype}" for field, datatype in cls.EMAIL_FIELDS.items()
         ])
         query = f'''
-            CREATE TABLE IF NOT EXISTS emails (
+            CREATE TABLE IF NOT EXISTS {TABLE} (
                 {columns},
                 PRIMARY KEY (id)
             );
@@ -32,13 +32,13 @@ class TableQuery:
         placeholders = ', '.join(['?' for _ in cls.EMAIL_FIELDS])
         columns = ', '.join(cls.EMAIL_FIELDS.keys())
         query = f'''
-            INSERT OR IGNORE INTO emails ({columns})
+            INSERT OR IGNORE INTO {TABLE} ({columns})
             VALUES ({placeholders});
         '''
         return query
 
-    SELECT_ALL_EMAILS = '''
-        SELECT * FROM emails;
+    SELECT_ALL_EMAILS = f'''
+        SELECT * FROM {TABLE};
     '''
 
 def getDbConnection():
