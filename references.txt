@@ -4,13 +4,15 @@ Work-Tracks:
 3. Installed the Google client library for Python. Install the requirements from requirements.txt
 4. Added authentication functionality to codebase -> it will access Gmail-APIs with given scope. And token.json will be created with access_token, refresh_token for future access.
 5. Tests Package is added for authentication function.
+6. Added & implemented functionalities for fetch email content using Gmail-APIs.
+7. Implemented functionalites for storing data into database - used SQL-lite3.
 
 References:
 1. Google-developer-console : Enabled - Gmail API in hpfxProject 
     - documentation : https://developers.google.com/workspace/gmail/api/guides
 2. Quick start Python guide for Gmail-APIs, OAuth : https://developers.google.com/workspace/gmail/api/quickstart/python#configure_the_oauth_consent_screen
 3. pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-4.
+4. 
 
 
 
