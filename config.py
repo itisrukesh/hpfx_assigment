@@ -15,6 +15,7 @@ class ConfigVars(Enum):
     DBFILE = "DBFILEVAL"
     TABLE = "TABLEVAL"
 
+# def loadConfigs():
 # Loads values from .env / os env
 load_dotenv(override=True)
 

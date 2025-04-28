@@ -1,14 +1,12 @@
 from auth import authenticateGmail
-from db import getDbConnection, createEmailsTable, storeEmailsBulk
+from db import createEmailsTable, storeEmailsBulk
 from config import BATCHCOUNT
 from utils import BuildEmailRecord
-import email
 
-def fetchEmails(max_res=10):
-    """Fetch emails from Gmail and store them into SQLite DB."""
+
+def fetchAndStoreEmails_from_Gmail(mail_service, max_res=10):
+    """Fetch emails from Gmail and store them into DB."""
     count = 0    
-    mail_service = authenticateGmail()
-    createEmailsTable() # PUTME in main.go 
     
     results = mail_service.users().messages().list(userId='me', maxResults=max_res).execute()
     msgs = results.get('messages',[])
@@ -36,5 +34,13 @@ def fetchEmails(max_res=10):
         storeEmailsBulk(batch)
         print(f'Batch Remaining emails DONE!')
 
+def fetchEmails_from_Db():
+    '''Fetch emails from database.'''
+    pass
+
 if __name__ == "__main__":
-    fetchEmails(200)
+    # Individual Running of fetch mail functionalities. If needed.
+    service = authenticateGmail()
+    createEmailsTable() # PUTME in main.go 
+    fetchAndStoreEmails_from_Gmail(service, 200)
+    # fetchEmails_from_Db()

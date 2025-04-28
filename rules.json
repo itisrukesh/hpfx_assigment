@@ -1,0 +1,39 @@
+[
+    {
+        "predicate": "All",
+        "conditions": [
+            {
+                "field": "sender",
+                "predicate": "Contains",
+                "value": "photos@onedrive.com"
+            },
+            {
+                "field": "subject",
+                "predicate": "Does Not Contain",
+                "value": "Spam"
+            }
+        ],
+        "actions": [
+            "mark_as_read",
+            "move_to_label:Important"
+        ]
+    },
+    {
+        "predicate": "Any",
+        "conditions": [
+            {
+                "field": "label_ids",
+                "predicate": "Contains",
+                "value": "CATEGORY_PROMOTIONS"
+            },
+            {
+                "field": "subject",
+                "predicate": "Contains",
+                "value": "Sale"
+            }
+        ],
+        "actions": [
+            "move_to_label:Promotions"
+        ]
+    }
+]
