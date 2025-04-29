@@ -3,7 +3,9 @@
 import json
 from typing import List, Dict
 from auth import authenticateGmail
-from fetchEmail import fetchEmails_from_Db
+from utils import BuildProcessedHistoryRecord
+from db import storeProcessedHistory
+from fetchEmail import fetchValidLabels
 
 class RuleLoader:
     """This class responsible for loading rules from a different data sources."""
@@ -124,15 +126,21 @@ class ActionExecutor:
     def moveToLabel(service, email_id: str, label: str):
         """Move the email to the specified label."""
         # For simplicity assume label already exists
+        #supporting for predefined & customized labels from the user Gmail Account:
+        valid_labels = fetchValidLabels(service)
+        label_id = valid_labels.get(label.upper())
+        if not label_id:
+            raise ValueError(f"Invalid Gmail label: {label}")
+        
         service.users().messages().modify(
             userId='me',
             id=email_id,
-            body={'addLabelIds': [label]}
+            body={'addLabelIds': [label_id]}
         ).execute()
 
 
 class RuleProcessor:
-    """Class responsible for processing emails based on loaded rules."""
+    """Class responsible for processing emails based on loaded rules. Stores the action audit once rule is processed"""
 
     def __init__(self, service, rules: List[Dict]):
         self.service = service
@@ -153,7 +161,15 @@ class RuleProcessor:
             for rule in self.rules:
                 if RuleEvaluator.matchRule(rule, email):
                     actions = rule.get('actions', [])
-                    ActionExecutor.performActions(self.service, email_id, actions)
+                    try:
+                        ActionExecutor.performActions(self.service, email_id, actions)
+                        status = 'Success'
+                    except Exception as e:
+                        status = f'Failed:{str(e)}'
+                    
+                    rule_id = rule.get('ruleid', None)
+                    record = BuildProcessedHistoryRecord(email_id, rule_id, actions, status)
+                    storeProcessedHistory(record)
 
 
 if __name__ == '__main__':

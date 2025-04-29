@@ -1,7 +1,7 @@
 from ruleEngine import RuleLoader, RuleProcessor
 from auth import authenticateGmail
 from fetchEmail import fetchAndStoreEmails_from_Gmail
-from db import createEmailsTable
+from db import createEmailsTable, createHistoriesTable, get_mails_from_db
 # from config import loadConfigs
 
 def main():
@@ -11,16 +11,20 @@ def main():
     # Step 1: Load Rules
     rules = RuleLoader.loadRules('rules.json')
     
-    # # Step 2: Create Tables
+    # Step 2: Create Tables
     createEmailsTable()
+    createHistoriesTable()
     
     # Step 3: Authenticate Gmail
     service = authenticateGmail()
     
-    # # Step 4: Fetch Emails
-    emails = fetchAndStoreEmails_from_Gmail(service, max_res=10)  # Limit for safety
+    # Step 4: Fetch Emails
+    fetchAndStoreEmails_from_Gmail(service, max_res=20)  # Limit for safety
+    
+    # Step 5: Get Emails from database
+    emails = get_mails_from_db()
 
-    # Step 5: Process Emails with Rules
+    # Step 6: Process Emails with Rules
     processor = RuleProcessor(service, rules)
     processor.processEmails(emails)
 

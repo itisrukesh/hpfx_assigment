@@ -3,6 +3,11 @@ from db import createEmailsTable, storeEmailsBulk
 from config import BATCHCOUNT
 from utils import BuildEmailRecord
 
+def fetchValidLabels(service):
+    results = service.users().labels().list(userId='me').execute()
+    labels = results.get('labels', [])
+    # Return name → ID mapping
+    return {label['name'].upper(): label['id'] for label in labels}
 
 def fetchAndStoreEmails_from_Gmail(mail_service, max_res=10):
     """Fetch emails from Gmail and store them into DB."""
@@ -34,13 +39,8 @@ def fetchAndStoreEmails_from_Gmail(mail_service, max_res=10):
         storeEmailsBulk(batch)
         print(f'Batch Remaining emails DONE!')
 
-def fetchEmails_from_Db():
-    '''Fetch emails from database.'''
-    pass
-
 if __name__ == "__main__":
     # Individual Running of fetch mail functionalities. If needed.
     service = authenticateGmail()
     createEmailsTable() # PUTME in main.go 
-    fetchAndStoreEmails_from_Gmail(service, 200)
-    # fetchEmails_from_Db()
+    fetchAndStoreEmails_from_Gmail(service, 20)

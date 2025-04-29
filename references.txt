@@ -14,6 +14,12 @@ Work-Tracks:
 13. Implemented ruleEngine functionalities for processing email, apply rules, take actions based on matching predicates.
 14. Created individual classes to maintain SOLID flow. It will help us in future for adding more new functionalities if needed.
 15. Created a main.py where we can running all the built functionalities in one place for entire demo purpose. Also including indivial main for separate fetching and processing.
+16. Completed implementation of fetch of emails from db & RuleEngine processing of emails, performing respective actions.
+17. Dev test the entire pipeline of working with live emails and live updation (Works as expected).
+18. Additionally implemented a table of where all the processed histories of emails & respective rules, status, processed time will be maintained.[>>IMPORTANT-CHECKLIST-POINT<<]
+19. This Processed History-Table will help us with FALLBACK, ROLLBACKS Actions, Request based reprocessing mails etc (Service supports we can provide).
+20. And included support for both predefined & customed labels on User's Gmail Account.
+
 
 
 References:
@@ -33,6 +39,7 @@ CHECKLIST:
     - We must update BuildEmailRecord() to handle new fields.
     - Either by parsing value or setting a safe default. (Otherwise the new field will get None)
  - Have real-mail data json files for Mock testing which will be used later part as well. And it is better than hard coded values while testing.
+ - Auditing & Tracing of processed matched rules on each email is very crusial point where we are manipulating client original data. So this table will help us with FALLBACK, ROLLBACKS Actions, Request based reprocessing mails etc. 
 
 Coding-Style followed: 
 1. Pascal/UpperCamel Case for <class> names: [ExampleClass]

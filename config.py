@@ -13,7 +13,8 @@ class ConfigVars(Enum):
     PORT = "PORTVAL"
     SCOPESSTRINGS = "SCOPESVAL"
     DBFILE = "DBFILEVAL"
-    TABLE = "TABLEVAL"
+    EMAILSTABLE = "EMAILSTABLEVAL"
+    HISTORYTABLE = "HISTORYTABLEVAL"
 
 # def loadConfigs():
 # Loads values from .env / os env
@@ -31,11 +32,16 @@ if DBFILE:
     print(DBFILE)
 else: print(f"{ConfigVars.DBFILE.value} environment variable not found.")
 
-# Get TableName value:
-TABLE = os.getenv(ConfigVars.TABLE.value)
-if TABLE:
-    print(TABLE)
-else: print(f"{ConfigVars.TABLE.value} environment variable not found.")
+# Get TableNames value:
+EMAILSTABLE = os.getenv(ConfigVars.EMAILSTABLE.value)
+if EMAILSTABLE:
+    print(EMAILSTABLE)
+else: print(f"{ConfigVars.EMAILSTABLE.value} environment variable not found.")
+
+HISTORYTABLE = os.getenv(ConfigVars.HISTORYTABLE.value)
+if HISTORYTABLE:
+    print(HISTORYTABLE)
+else: print(f"{ConfigVars.HISTORYTABLE.value} environment variable not found.")
 
 # Get list of Scopes values
 # If modifying these SCOPES values in env, make sure to delete the token.pickle file. Else it will have old scope values in it.

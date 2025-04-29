@@ -1,5 +1,4 @@
-# utils.py
-
+from datetime import datetime
 from db import TableQuery
 
 def BuildEmailRecord(msg_detail):
@@ -25,4 +24,19 @@ def BuildEmailRecord(msg_detail):
         email_data.get(field, None) for field in TableQuery.EMAIL_FIELDS
     )
 
+    return record_tuple
+
+def BuildProcessedHistoryRecord(email_id: str, rule_id: str, actions: list, status):
+    """Build a full processed history record dictionary matching RULE_HISTORY_FIELDS."""
+    # Make sure to update/Add new field in processed_data if our PROCESSED-HISTORY SCHEMA got Changed/Modified.
+    processed_data = {
+        'email_id': email_id,
+        'rule_id': rule_id,
+        'actions_taken': ','.join(actions),
+        'status': status,
+        'processed_at': datetime.now()
+    }
+    
+    record_tuple = tuple(processed_data.get(field, None) for field in TableQuery.RULE_HISTORY_FIELDS)
+    
     return record_tuple

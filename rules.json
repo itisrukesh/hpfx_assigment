@@ -1,5 +1,7 @@
 [
-    {
+    {   
+        "ruleid":"Rid001",
+        "'description":"Rule to find mail with subject spam",
         "predicate": "All",
         "conditions": [
             {
@@ -15,10 +17,12 @@
         ],
         "actions": [
             "mark_as_read",
-            "move_to_label:Important"
+            "move_to_label:STARRED"
         ]
     },
     {
+        "ruleid": "Rid002",
+        "'description":"Rule to find mail with subject sale",
         "predicate": "Any",
         "conditions": [
             {
@@ -34,6 +38,27 @@
         ],
         "actions": [
             "move_to_label:Promotions"
+        ]
+    },
+    {   
+        "ruleid":"Rid003",
+        "'description":"Rule to find mail with subject spam",
+        "predicate": "All",
+        "conditions": [
+            {
+                "field": "sender",
+                "predicate": "Contains",
+                "value": "info@realpython.com"
+            },
+            {
+                "field": "subject",
+                "predicate": "Contain",
+                "value": "Thread Safety"
+            }
+        ],
+        "actions": [
+            "mark_as_read",
+            "move_to_label:test"
         ]
     }
 ]
