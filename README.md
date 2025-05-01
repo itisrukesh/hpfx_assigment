@@ -1,4 +1,4 @@
-# hpfx_assigment
+# hpfx_assignment
 
 A standalone python application that integrates with Gmail API and performs some rule based operations on emails.
 
@@ -27,7 +27,7 @@ Built with **Python**, the project is designed using **SOLID principles**, teste
 ## 📁 Project Structure
 
 ```bash
-    📁 hpfx_aggigment/
+    📁 hpfx_assignment/
     ├── main.py                    # Entry point for running the pipeline
     ├── auth.py                    # Handles Gmail authentication (OAuth2)
     ├── config.py                  # Loads and validates .env configuration
