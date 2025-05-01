@@ -123,6 +123,7 @@ Follow these steps:
 ## 5. 📧 Run Script - Process Emails!
 
 Once Completion of All setup now you can Run Scripts. In terminal: Use following command!
+-- Additonally 🙂 (Added reference.txt in the codebase: which have my writings of traces - while working on the script.)
 
 ```bash
 python main.py
