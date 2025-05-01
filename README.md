@@ -64,6 +64,7 @@ pip install -r requirements.txt
 ---
 ### 2. ⚙️ Setup Instructions
 📄 Create a .env File   
+```bash
 CREDSFILE="credentials.json" (your-credentials.json-filepath)
 TOKENFILE="token.json" (your-token.json-filepath)
 DEBUG="False"
@@ -72,6 +73,7 @@ SCOPESVAl="https://www.googleapis.com/auth/gmail.modify,https://www.googleapis.c
 DBFILEVAL="usermails.db"
 EMAILSTABLEVAL="emails"
 HISTORYTABLEVAL='processing_history'
+```
 
 ### 3. 🧠 Sample Rule File (rules.json)
 ```bash
