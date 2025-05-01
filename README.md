@@ -87,7 +87,7 @@ Similarly you can create your own rules.json with mentioned fields.
 [
   {
     "rule_id": "Rid001",
-    "name": "Ignore Promotions",
+    "description": "Ignore Promotions",
     "predicate": "All",
     "conditions": [
       {"field": "sender", "predicate": "Contains", "value": "noreply@"}
