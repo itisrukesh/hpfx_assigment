@@ -1,28 +1,24 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from fetchEmail import fetchEmails
+from fetchEmail import fetchAndStoreEmails_from_Gmail
 
-class TestFetchEmails(unittest.TestCase):
+class TestFetchAndStoreEmails(unittest.TestCase):
 
-    @patch('fetchEmail.authenticateGmail')
-    @patch('fetchEmail.createEmailsTable')
     @patch('fetchEmail.storeEmailsBulk')
-    def test_fetchEmails_WithMock(self, mock_store_bulk, mock_create_table, mock_authenticate_gmail):
-        """Test fetchEmails() with mocked Gmail API and store functionality."""
-
-        # Create a fake Gmail service
+    def test_fetchAndStoreEmails_from_Gmail_with_mocked_service(self, mock_store_bulk):
+        # Create a mock Gmail service
         fake_service = MagicMock()
 
-        # Mock service.users().messages().list().execute()
+        # Simulate messages().list().execute() returning 2 email message IDs
         fake_service.users.return_value.messages.return_value.list.return_value.execute.return_value = {
             'messages': [{'id': 'msg1'}, {'id': 'msg2'}]
         }
 
-        # Mock service.users().messages().get().execute()
+        # Simulate messages().get().execute() returning email details
         def fake_get_message(userId, id, format):
             return {
                 'id': id,
-                'threadId': f"thread_{id}",
+                'threadId': f'thread_{id}',
                 'payload': {
                     'headers': [
                         {'name': 'From', 'value': f'sender_{id}@example.com'},
@@ -34,35 +30,32 @@ class TestFetchEmails(unittest.TestCase):
                 'labelIds': ['INBOX', 'IMPORTANT']
             }
 
-        # Mock message.get().execute() per message
+        # Patch get().execute() calls to use fake_get_message
         fake_service.users.return_value.messages.return_value.get.side_effect = lambda userId, id, format: MagicMock(
             execute=lambda: fake_get_message(userId, id, format)
         )
 
-        # Make authenticateGmail() return our fake service
-        mock_authenticate_gmail.return_value = fake_service
+        # Run the fetch + store function with mocked service
+        fetchAndStoreEmails_from_Gmail(fake_service, max_res=2)
 
-        # Run your fetchEmails function
-        fetchEmails(max_res=2)
-
-        # Assert createEmailsTable() was called once
-        mock_create_table.assert_called_once()
-
-        # Assert storeEmailsBulk() was called (at least once)
+        # Assert that storeEmailsBulk() was called
         self.assertTrue(mock_store_bulk.called)
 
-        # Check what was passed to storeEmailsBulk()
-        args, kwargs = mock_store_bulk.call_args
-        batch = args[0]  # first positional argument is batch
+        # Grab the arguments passed to storeEmailsBulk
+        all_calls = mock_store_bulk.call_args_list
+        all_emails = []
+        for call in all_calls:
+            args, _ = call
+            all_emails.extend(args[0])  # append each batch's emails
 
-        # We expect 2 emails
-        self.assertEqual(len(batch), 2)
+        # Expect 2 emails in total
+        self.assertEqual(len(all_emails), 2)
 
-        # Check basic fields inside one email tuple
-        first_email = batch[0]
-        self.assertEqual(first_email[2], 'sender_msg1@example.com')  # sender
-        self.assertEqual(first_email[3], 'Subject msg1')  # subject
-        self.assertIn('Sat, 26 Apr 2025 10:30:00 +0000', first_email[5])  # received_datetime contains date
+        # Check structure of first email
+        first_email = all_emails[0]
+        self.assertEqual(first_email[2], 'sender_msg1@example.com')     # sender
+        self.assertEqual(first_email[3], 'Subject msg1')                # subject
+        self.assertIn('Sat, 26 Apr 2025 10:30:00 +0000', first_email[5])  # received_datetime
 
 if __name__ == '__main__':
     unittest.main()
