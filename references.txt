@@ -21,6 +21,8 @@ Work-Tracks:
 20. And included support for both predefined & customed labels on User's Gmail Account.
 21. Completed the unit testing and integration testing of RuleEngine and Store history processed Rules, Mails.
 
+22. Implemented logger for traces and debugging for Entire Pipeline.
+23. Added sample run logs in git repo. For reference.
 
 
 References:

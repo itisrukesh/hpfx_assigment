@@ -2,8 +2,11 @@ from auth import authenticateGmail
 from db import createEmailsTable, storeEmailsBulk
 from config import BATCHCOUNT
 from utils import BuildEmailRecord
+from logger import app_logger as log
 
 def fetchValidLabels(service):
+    '''Fetch Labels from Gmail'''
+    log.debug("Inside fetchValidLabels!")
     results = service.users().labels().list(userId='me').execute()
     labels = results.get('labels', [])
     # Return name → ID mapping
@@ -32,12 +35,14 @@ def fetchAndStoreEmails_from_Gmail(mail_service, max_res=10):
         if len(batch) >= BATCHCOUNT:
             storeEmailsBulk(batch)
             count+=1
-            print(f"Batch {count} DONE!")
+            log.debug(f"Batch {count} DONE!")
             batch = []
     # Save any remaining emails
     if batch:
         storeEmailsBulk(batch)
-        print(f'Batch Remaining emails DONE!')
+        log.debug(f'Batch Remaining emails DONE!')
+        
+    log.info("Completed Fetching Gmails -> Stored in DB.")
 
 if __name__ == "__main__":
     # Individual Running of fetch mail functionalities. If needed.

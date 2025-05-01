@@ -1,5 +1,6 @@
 import sqlite3
 from config import DBFILE, EMAILSTABLE, HISTORYTABLE
+from logger import app_logger as log
 
 class TableQuery:
     EMAIL_FIELDS = {
@@ -85,7 +86,9 @@ def get_mails_from_db() -> list:
         rows = cursor.fetchall()
         columns = [desc[0] for desc in cursor.description]
         emails = [dict(zip(columns, row)) for row in rows]
-        
+
+    log.debug("Returning email from database!")
+
     return emails
 
 # Table Creation Emails:
@@ -95,6 +98,7 @@ def createEmailsTable():
         cursor = conn.cursor()
         cursor.execute(TableQuery.createEmails_Table())
         conn.commit()
+    log.debug(f"Table-Creation completed for {EMAILSTABLE}")
 
 # Table Creation History:
 def createHistoriesTable():
@@ -103,23 +107,28 @@ def createHistoriesTable():
         cursor = conn.cursor()
         cursor.execute(TableQuery.createProcessedHistory_Table())
         conn.commit()
+    log.debug(f"Table-Creation completed for {HISTORYTABLE}")
 
 def storeEmailsBulk(email_records):
     """Bulk save a list of email records into the database."""
     if not email_records:
+        log.warning("email_reords is Empty!")
         return
 
     with getDbConnection() as conn:
         cursor = conn.cursor()
         cursor.executemany(TableQuery.insertEmail(), email_records)
         conn.commit()
+    log.debug(f"Insertion completed for {EMAILSTABLE}")
         
 def storeProcessedHistory(processed_records):
     """Bulk save a list of processed history records into the database."""
     if not processed_records:
+        log.warning(f'processed_record is Empty!')
         return
     
     with getDbConnection() as conn:
         cursor = conn.cursor()
         cursor.execute(TableQuery.insertHistories(), processed_records)
         conn.commit()
+    log.debug(f"Insertion completed for {HISTORYTABLE}")

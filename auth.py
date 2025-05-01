@@ -1,5 +1,6 @@
 import os
 import pickle
+from logger import app_logger as log
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
@@ -25,6 +26,8 @@ def authenticateGmail():
         # Save the credentials for next run
         with open(TOKENFILE, 'w') as token:
             token.write(creds.to_json())
+            log.debug(f'Token json file is created! : {TOKENFILE}')
 
     service = build('gmail', 'v1', credentials=creds)
+    log.info("Completed-Authentication, Service created!")
     return service
