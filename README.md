@@ -59,10 +59,10 @@ cd hpfx_assigment
 python -m venv env
 source env/bin/activate   # or env\Scripts\activate on Windows
 pip install -r requirements.txt
-
+```
 
 ---
-## ⚙️ Setup Instructions
+### 2. ⚙️ Setup Instructions
 📄 Create a .env File   
 CREDSFILE="credentials.json" (your-credentials.json-filepath)
 TOKENFILE="token.json" (your-token.json-filepath)
@@ -73,29 +73,8 @@ DBFILEVAL="usermails.db"
 EMAILSTABLEVAL="emails"
 HISTORYTABLEVAL='processing_history'
 
-
-🔐 Set Up Gmail OAuth credentials.json
-📌 This file is not included. You must generate your own.
-
-Follow these steps:
-Visit Google Cloud Console: [text](https://developers.google.com/workspace/gmail/api/guides)
-
-Create or select a project
-
-Enable Gmail API
-
-Go to APIs & Services → Credentials
-
-Click Create Credentials → OAuth Client ID
-
-Choose Desktop App, give it a name
-
-Download the file and rename it to credentials.json
-
-Place it in your project root (next to main.py)
-
-
-🧠 Sample Rule File (rules.json)
+### 3. 🧠 Sample Rule File (rules.json)
+```bash
 [
   {
     "rule_id": "Rid001",
@@ -107,7 +86,29 @@ Place it in your project root (next to main.py)
     "actions": ["mark_as_read", "move_to_label:PROMOTIONS"]
   }
 ]
+```
 
+### 4. 🔐 Set Up Gmail OAuth credentials.json
+📌 This file is not included. You must generate your own.
+Follow these steps:
+Visit Google Cloud Console: [text](https://developers.google.com/workspace/gmail/api/guides)
+
+-- Create or select a project
+
+-- Enable Gmail API
+
+-- Go to APIs & Services → Credentials
+
+-- Click Create Credentials → OAuth Client ID
+
+-- Choose Desktop App, give it a name
+
+-- Download the file and rename it to credentials.json
+
+Place it in your project root (next to main.py)
+
+## 5. 📧 Run Script - Process Emails!
 Once Completion of All setup now you can Run Scripts. In terminal: Use following command!
-
+```bash
 python main.py
+```
