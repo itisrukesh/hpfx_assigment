@@ -19,6 +19,7 @@ Work-Tracks:
 18. Additionally implemented a table of where all the processed histories of emails & respective rules, status, processed time will be maintained.[>>IMPORTANT-CHECKLIST-POINT<<]
 19. This Processed History-Table will help us with FALLBACK, ROLLBACKS Actions, Request based reprocessing mails etc (Service supports we can provide).
 20. And included support for both predefined & customed labels on User's Gmail Account.
+21. Completed the unit testing and integration testing of RuleEngine and Store history processed Rules, Mails.
 
 
 
