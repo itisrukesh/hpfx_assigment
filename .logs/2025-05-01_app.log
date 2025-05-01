@@ -1,0 +1,134 @@
+[2025-05-01 15:52:36] INFO app: Starting Application...
+[2025-05-01 15:52:36] DEBUG app: rules -> loaded from rules.json
+[2025-05-01 15:52:36] DEBUG app: Rules Loaded from rules.json
+[2025-05-01 15:52:36] DEBUG app: Table-Creation completed for emails
+[2025-05-01 15:52:36] DEBUG app: Table-Creation completed for processing_history
+[2025-05-01 15:52:36] DEBUG app: Creation of Tables DONE!
+[2025-05-01 15:52:36] INFO app: Initiating Authentication - GMAIL-APIs
+[2025-05-01 15:52:36] INFO app: Completed-Authentication, Service created!
+[2025-05-01 15:52:36] INFO app: Fetching of Emails Started!
+[2025-05-01 15:52:37] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:37] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:38] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:38] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:39] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:39] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:40] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:40] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:41] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:41] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:41] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:42] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:42] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:43] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:43] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:43] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:44] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:44] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:45] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:45] DEBUG app: Returning record_tuple of email_records!
+[2025-05-01 15:52:45] DEBUG app: Insertion completed for emails
+[2025-05-01 15:52:45] DEBUG app: Batch Remaining emails DONE!
+[2025-05-01 15:52:45] INFO app: Completed Fetching Gmails -> Stored in DB.
+[2025-05-01 15:52:45] INFO app: Initiated-Fetching of mails from Database
+[2025-05-01 15:52:45] DEBUG app: Returning email from database!
+[2025-05-01 15:52:45] INFO app: Starting RuleProcessor. To process mails
+[2025-05-01 15:52:45] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:45] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:45] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:46] DEBUG app: Action : Mark the email as read DONE!
+[2025-05-01 15:52:46] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:47] DEBUG app: Action : Mark the email as read DONE!
+[2025-05-01 15:52:47] DEBUG app: performActions Status: Success
+[2025-05-01 15:52:47] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:47] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:47] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:47] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:47] ERROR app: Invalid Gmail label: Promotions
+[2025-05-01 15:52:47] DEBUG app: performActions Status: Failed:Invalid Gmail label: Promotions
+[2025-05-01 15:52:47] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:47] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:47] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:47] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:48] DEBUG app: Action : Mark the email as read DONE!
+[2025-05-01 15:52:48] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:49] DEBUG app: Action : Mark the email as read DONE!
+[2025-05-01 15:52:49] DEBUG app: performActions Status: Success
+[2025-05-01 15:52:49] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:49] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:49] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:49] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:49] ERROR app: Invalid Gmail label: Promotions
+[2025-05-01 15:52:49] DEBUG app: performActions Status: Failed:Invalid Gmail label: Promotions
+[2025-05-01 15:52:49] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:50] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:50] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:50] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:50] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:50] DEBUG app: Action : Mark the email as read DONE!
+[2025-05-01 15:52:50] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:51] DEBUG app: Action : Mark the email as read DONE!
+[2025-05-01 15:52:51] DEBUG app: performActions Status: Success
+[2025-05-01 15:52:51] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:51] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:51] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:51] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:51] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:52] DEBUG app: Action : Mark the email as read DONE!
+[2025-05-01 15:52:52] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:53] DEBUG app: Action : Mark the email as read DONE!
+[2025-05-01 15:52:53] DEBUG app: performActions Status: Success
+[2025-05-01 15:52:53] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:53] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:53] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:53] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:53] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:53] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:53] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:53] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:53] ERROR app: Invalid Gmail label: Promotions
+[2025-05-01 15:52:53] DEBUG app: performActions Status: Failed:Invalid Gmail label: Promotions
+[2025-05-01 15:52:53] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:53] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:53] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:53] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:53] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:54] ERROR app: Invalid Gmail label: Promotions
+[2025-05-01 15:52:54] DEBUG app: performActions Status: Failed:Invalid Gmail label: Promotions
+[2025-05-01 15:52:54] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:54] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:54] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:54] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:54] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:54] ERROR app: Invalid Gmail label: Promotions
+[2025-05-01 15:52:54] DEBUG app: performActions Status: Failed:Invalid Gmail label: Promotions
+[2025-05-01 15:52:54] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:54] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:54] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:54] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:54] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:55] ERROR app: Invalid Gmail label: Promotions
+[2025-05-01 15:52:55] DEBUG app: performActions Status: Failed:Invalid Gmail label: Promotions
+[2025-05-01 15:52:55] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:55] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:55] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:55] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:55] DEBUG app: Action : Mark the email as read DONE!
+[2025-05-01 15:52:55] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:56] DEBUG app: Action : Mark the email as read DONE!
+[2025-05-01 15:52:56] DEBUG app: performActions Status: Success
+[2025-05-01 15:52:56] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:56] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:56] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:56] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:56] DEBUG app: Peforming Actions!
+[2025-05-01 15:52:56] DEBUG app: Inside fetchValidLabels!
+[2025-05-01 15:52:57] ERROR app: Invalid Gmail label: Promotions
+[2025-05-01 15:52:57] DEBUG app: performActions Status: Failed:Invalid Gmail label: Promotions
+[2025-05-01 15:52:57] DEBUG app: Returning record_tuple of processed_history!
+[2025-05-01 15:52:57] DEBUG app: Insertion completed for processing_history
+[2025-05-01 15:52:57] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:57] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:57] DEBUG app: Unknown predicate, ignore - continuing
+[2025-05-01 15:52:57] INFO app: Rules applied successfully!
+[2025-05-01 15:52:57] INFO app: >> Application Sucessfully executed! <<

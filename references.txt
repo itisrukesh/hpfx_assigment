@@ -1,0 +1,50 @@
+Work-Tracks:
+1. Created a project in googleCloud console to access Gmail-APIs.
+2. Creadted a App for Configuration the OAuth consent. Redirect-Url must be added to [http://localhost:PORT, http://localhost:8080/]. Downloaded credentials.json file which as clientID & clientSecret on it. [>>IMPORTANT-CHECKLIST-POINT<<]
+3. Installed the Google client library for Python. Install the requirements from requirements.txt
+4. Added authentication functionality to codebase -> it will access Gmail-APIs with given scope. And token.json will be created with access_token, refresh_token for future access.
+5. Tests Package is added for authentication function.
+6. Added & implemented functionalities for fetch email content using Gmail-APIs.
+7. Implemented functionalites for storing data into database - used SQL-lite3.
+8. Modified the fetch functionalites and storing functionalites - Based on SOLID principles. 
+9. Implemented dynamic mapping for email schema and easy future extensions.
+10. Implemented bulk batch insertion of email_records for faster storing and performance boosting. (Good for thousands of emails).
+11. Implemented Dynamic Builder Function (Auto-built from schema) if field is not found default value will be there. [>>IMPORTANT-CHECKLIST-POINT<<]
+12. Added Testfiles for above mentioned pointers(6-11). Test cases and Mocking part done. [>>IMPORTANT-CHECKLIST-POINT<<]
+13. Implemented ruleEngine functionalities for processing email, apply rules, take actions based on matching predicates.
+14. Created individual classes to maintain SOLID flow. It will help us in future for adding more new functionalities if needed.
+15. Created a main.py where we can running all the built functionalities in one place for entire demo purpose. Also including indivial main for separate fetching and processing.
+16. Completed implementation of fetch of emails from db & RuleEngine processing of emails, performing respective actions.
+17. Dev test the entire pipeline of working with live emails and live updation (Works as expected).
+18. Additionally implemented a table of where all the processed histories of emails & respective rules, status, processed time will be maintained.[>>IMPORTANT-CHECKLIST-POINT<<]
+19. This Processed History-Table will help us with FALLBACK, ROLLBACKS Actions, Request based reprocessing mails etc (Service supports we can provide).
+20. And included support for both predefined & customed labels on User's Gmail Account.
+21. Completed the unit testing and integration testing of RuleEngine and Store history processed Rules, Mails.
+22. Implemented logger for traces and debugging for Entire Pipeline.
+23. Added sample run logs in git repo. For reference.
+
+
+References:
+1. Google-developer-console : Enabled - Gmail API in hpfxProject 
+    - documentation : https://developers.google.com/workspace/gmail/api/guides
+2. Quick start Python guide for Gmail-APIs, OAuth : https://developers.google.com/workspace/gmail/api/quickstart/python#configure_the_oauth_consent_screen
+3. pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+4. 
+
+
+
+CHECKLIST:
+ - OAuth Client Type = Desktop App (not Web app). Redirect URI includes http://localhost:PORT. 
+ - Scopes match (https://www.googleapis.com/auth/gmail.modify for modify access).
+ - Pointer-11 -> (Clean-Code-checklist)
+    - Whenever the schema updates (EMAIL_FIELDS),
+    - We must update BuildEmailRecord() to handle new fields.
+    - Either by parsing value or setting a safe default. (Otherwise the new field will get None)
+ - Have real-mail data json files for Mock testing which will be used later part as well. And it is better than hard coded values while testing.
+ - Auditing & Tracing of processed matched rules on each email is very crusial point where we are manipulating client original data. So this table will help us with FALLBACK, ROLLBACKS Actions, Request based reprocessing mails etc. 
+
+Coding-Style followed: 
+1. Pascal/UpperCamel Case for <class> names: [ExampleClass]
+2. Camal Case for <functions>/<method> names: [exampleFunc]
+3. Snake/Lower Case for <variable> names: [example_variable]
+4. Upper Case for <enum variables>/<CONSTANTS> names: [EXAMPLEVARS]
