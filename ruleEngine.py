@@ -6,6 +6,7 @@ from auth import authenticateGmail
 from utils import BuildProcessedHistoryRecord
 from db import storeProcessedHistory
 from fetchEmail import fetchValidLabels
+from logger import app_logger as log
 
 class RuleLoader:
     """This class responsible for loading rules from a different data sources."""
@@ -29,16 +30,20 @@ class RuleLoader:
         try:
             with open(filepath, 'r') as f:
                 rules = json.load(f)
+                log.debug(f"rules -> loaded from {filepath}")
 
             if not isinstance(rules, list):
+                log.error("Rules file must contain a list of rules.")
                 raise ValueError("Rules file must contain a list of rules.")
-
+            
             return rules
 
         except FileNotFoundError:
+            log.error(f'Rules file not found at path: {filepath}')
             raise FileNotFoundError(f"Rules file not found at path: {filepath}")
         
         except json.JSONDecodeError as e:
+            log.error(f'Invalid JSON format in rules file: {str(e)}')
             raise ValueError(f"Invalid JSON format in rules file: {str(e)}")
 
 
@@ -67,6 +72,7 @@ class RuleEvaluator:
         conditions = rule.get('conditions', [])
 
         if not conditions:
+            log.debug(f"Empty condition(s) returning")
             return False
 
         results = []
@@ -79,6 +85,7 @@ class RuleEvaluator:
             email_field_value = email.get(field, '')
 
             if condition_predicate not in cls.SUPPORTED_PREDICATES:
+                log.debug("Unknown predicate, ignore - continuing")
                 continue  # Unknown predicate, ignore
 
             checker = cls.SUPPORTED_PREDICATES[condition_predicate]
@@ -106,6 +113,7 @@ class ActionExecutor:
             email_id (str): ID of the email to act upon.
             actions (List[str]): List of actions to perform.
         """
+        log.debug("Peforming Actions!")
         for action in actions:
             if action == 'mark_as_read':
                 ActionExecutor.markAsRead(service, email_id)
@@ -121,6 +129,7 @@ class ActionExecutor:
             id=email_id,
             body={'removeLabelIds': ['UNREAD']}
         ).execute()
+        log.debug("Action : Mark the email as read DONE!")
 
     @staticmethod
     def moveToLabel(service, email_id: str, label: str):
@@ -130,6 +139,7 @@ class ActionExecutor:
         valid_labels = fetchValidLabels(service)
         label_id = valid_labels.get(label.upper())
         if not label_id:
+            log.error(f"Invalid Gmail label: {label}")
             raise ValueError(f"Invalid Gmail label: {label}")
         
         service.users().messages().modify(
@@ -137,6 +147,7 @@ class ActionExecutor:
             id=email_id,
             body={'addLabelIds': [label_id]}
         ).execute()
+        log.debug("Action : Mark the email as read DONE!")
 
 
 class RuleProcessor:
@@ -156,6 +167,7 @@ class RuleProcessor:
         for email in emails:
             email_id = email.get('id')
             if not email_id:
+                log.debug(f"email_id is Not found! continuing...")
                 continue
 
             for rule in self.rules:
@@ -166,6 +178,8 @@ class RuleProcessor:
                         status = 'Success'
                     except Exception as e:
                         status = f'Failed:{str(e)}'
+                    
+                    log.debug(f'performActions Status: {status}')
                     
                     rule_id = rule.get('ruleid', None)
                     record = BuildProcessedHistoryRecord(email_id, rule_id, actions, status)

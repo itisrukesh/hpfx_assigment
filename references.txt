@@ -20,6 +20,8 @@ Work-Tracks:
 19. This Processed History-Table will help us with FALLBACK, ROLLBACKS Actions, Request based reprocessing mails etc (Service supports we can provide).
 20. And included support for both predefined & customed labels on User's Gmail Account.
 
+22. Implemented logger for traces and debugging for Entire Pipeline.
+23. Added sample run logs in git repo. For reference.
 
 
 References:

@@ -1,5 +1,6 @@
 from datetime import datetime
 from db import TableQuery
+from logger import app_logger as log
 
 def BuildEmailRecord(msg_detail):
     """Build a full email record dictionary matching EMAIL_FIELDS."""
@@ -23,7 +24,7 @@ def BuildEmailRecord(msg_detail):
     record_tuple = tuple(
         email_data.get(field, None) for field in TableQuery.EMAIL_FIELDS
     )
-
+    log.debug("Returning record_tuple of email_records!")
     return record_tuple
 
 def BuildProcessedHistoryRecord(email_id: str, rule_id: str, actions: list, status):
@@ -38,5 +39,5 @@ def BuildProcessedHistoryRecord(email_id: str, rule_id: str, actions: list, stat
     }
     
     record_tuple = tuple(processed_data.get(field, None) for field in TableQuery.RULE_HISTORY_FIELDS)
-    
+    log.debug("Returning record_tuple of processed_history!")
     return record_tuple
