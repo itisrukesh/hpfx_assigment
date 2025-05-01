@@ -92,8 +92,9 @@ HISTORYTABLEVAL='processing_history'
 
 ### 4. 🔐 Set Up Gmail OAuth credentials.json
 📌 This file is not included. You must generate your own.
+
 Follow these steps:
-Visit Google Cloud Console: [text](https://developers.google.com/workspace/gmail/api/guides)
+-- Visit Google Cloud Console: [link](https://developers.google.com/workspace/gmail/api/guides)
 
 -- Create or select a project
 
