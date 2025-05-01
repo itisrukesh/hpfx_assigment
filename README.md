@@ -128,3 +128,7 @@ Once Completion of All setup now you can Run Scripts. In terminal: Use following
 ```bash
 python main.py
 ```
+
+## 6. 🎦 Demo Video - G-drive link
+
+Assignment: [Demo-Video-Link](https://drive.google.com/file/d/1jWF8940ULUA6RWLL6wiP_OJnnSG4wmA2/view?usp=sharing)
