@@ -1,13 +1,11 @@
 import os
-from enum import Enum
 from dotenv import load_dotenv
+from enum import Enum
+from pathlib import Path
+from typing import List
 
-CREDSFILE = 'credentials.json'
-TOKENFILE = 'token.json'
-
-# From this we are getting how many number of mail we should fetch, 
-# we will also use this for batch storing as well.
-BATCHCOUNT = 50
+# Load .env values
+load_dotenv(override=True)
 
 class ConfigVars(Enum):
     PORT = "PORTVAL"
@@ -15,41 +13,42 @@ class ConfigVars(Enum):
     DBFILE = "DBFILEVAL"
     EMAILSTABLE = "EMAILSTABLEVAL"
     HISTORYTABLE = "HISTORYTABLEVAL"
+    # json files
+    CREDSFILE = "CREDSFILE"
+    DEFAULT_CREDSFILE = "credentials.json"
+    TOKENFILE = "TOKENFILE"
+    DEFAULT_TOKENFILE = "token.json"
+    #Additional Vars used in codebase:
+    BATCHCOUNT = "BATCHCOUNT"
+    BATCHVALUE = 50
 
-# def loadConfigs():
-# Loads values from .env / os env
-load_dotenv(override=True)
 
-#Get PORT
-PORT = int(os.getenv(ConfigVars.PORT.value))
-if PORT:
-    print(PORT)
-else: print(f"{ConfigVars.PORT.value} environment variable not found.")
+def _required(key: str) -> str:
+    value = os.getenv(key)
+    if not value:
+        raise EnvironmentError(f"Missing required environment variable: {key}")
+    return value
 
-# Get DBFile value:
-DBFILE = os.getenv(ConfigVars.DBFILE.value)
-if DBFILE:
-    print(DBFILE)
-else: print(f"{ConfigVars.DBFILE.value} environment variable not found.")
 
-# Get TableNames value:
-EMAILSTABLE = os.getenv(ConfigVars.EMAILSTABLE.value)
-if EMAILSTABLE:
-    print(EMAILSTABLE)
-else: print(f"{ConfigVars.EMAILSTABLE.value} environment variable not found.")
+def _required_int(key: str) -> int:
+    val = _required(key)
+    try:
+        return int(val)
+    except ValueError:
+        raise ValueError(f"{key} must be an integer")
 
-HISTORYTABLE = os.getenv(ConfigVars.HISTORYTABLE.value)
-if HISTORYTABLE:
-    print(HISTORYTABLE)
-else: print(f"{ConfigVars.HISTORYTABLE.value} environment variable not found.")
 
-# Get list of Scopes values
-# If modifying these SCOPES values in env, make sure to delete the token.pickle file. Else it will have old scope values in it.
-SCOPES = []
-scope_strings = os.getenv(ConfigVars.SCOPESSTRINGS.value)
-if scope_strings:
-    my_list = scope_strings.split(",")
-    SCOPES.extend(my_list)
-    print(SCOPES)
-else:
-    print(f"{ConfigVars.SCOPESSTRINGS.value} environment variable not found.")
+def _parse_list(key: str) -> List[str]:
+    val = os.getenv(key, "")
+    return [s.strip() for s in val.split(",") if s.strip()]
+
+
+CREDSFILE: str = os.getenv(ConfigVars.CREDSFILE.value, ConfigVars.DEFAULT_CREDSFILE.value)
+TOKENFILE: str = os.getenv(ConfigVars.TOKENFILE.value, ConfigVars.DEFAULT_TOKENFILE.value)
+BATCHCOUNT: int = int(os.getenv(ConfigVars.BATCHCOUNT.value, ConfigVars.BATCHVALUE.value))
+
+PORT: int = _required_int(ConfigVars.PORT.value)
+SCOPES: List[str] = _parse_list(ConfigVars.SCOPESSTRINGS.value)
+DBFILE: str = _required(ConfigVars.DBFILE.value)
+EMAILSTABLE: str = _required(ConfigVars.EMAILSTABLE.value)
+HISTORYTABLE: str = _required(ConfigVars.HISTORYTABLE.value)

@@ -7,7 +7,7 @@
             {
                 "field": "sender",
                 "predicate": "Contains",
-                "value": "photos@onedrive.com"
+                "value": "no-reply"
             },
             {
                 "field": "subject",

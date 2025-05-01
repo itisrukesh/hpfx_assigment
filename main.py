@@ -2,12 +2,8 @@ from ruleEngine import RuleLoader, RuleProcessor
 from auth import authenticateGmail
 from fetchEmail import fetchAndStoreEmails_from_Gmail
 from db import createEmailsTable, createHistoriesTable, get_mails_from_db
-# from config import loadConfigs
 
 def main():
-    # Load all needed configurations
-    # loadConfigs()
-    
     # Step 1: Load Rules
     rules = RuleLoader.loadRules('rules.json')
     
@@ -31,4 +27,5 @@ def main():
     print(">> Rules applied successfully! <<")
 
 if __name__ == "__main__":
-    main()
+    # config is implemented in global scope -> act initialize before main
+    main() 
