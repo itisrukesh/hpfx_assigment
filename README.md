@@ -55,7 +55,7 @@ Built with **Python**, the project is designed using **SOLID principles**, teste
 ### 1. 📥 Clone & Install Requirements
 
 ```bash
-git clone [text](https://github.com/itisrukesh/hpfx_assigment.git)
+git clone https://github.com/itisrukesh/hpfx_assigment.git
 cd hpfx_assigment
 python -m venv env
 source env/bin/activate   # or env\Scripts\activate on Windows
